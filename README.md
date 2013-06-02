@@ -5,10 +5,13 @@ This is a simple experimental script for extracting data from a users' Mendeley 
 
 ### Extraction types
 * **Paper-keywords:** extracts keywords from each paper, along with some other basic metadata.
+* **Co-author networks:** not yet implemented.
 
 ### Output types
 * **CSV:** Comma-separated values
 * **TSV:** Tab-separated values
+* **SIF:** Not yet implemented
+* **XML:** Not yet implemented
 
 Installation and use
 --------------------
