@@ -17,14 +17,12 @@ Installation and use
 * (Get a Mendeley API key)[http://dev.mendeley.com/applications/register/], and update the values in config.json
 * In a new terminal window, go to the folder where you put this script, and open a new python shell:
 
-```
-$ python
+```$ python
 ```
 
 * Import the module, and run the interface() method:
 
-```
->>> import mendeley_extractions as me
+```>>> import mendeley_extractions as me
 >>> me.interface()
 ```
 
