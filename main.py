@@ -2,7 +2,9 @@ from pprint import pprint
 from mendeley_client import *
 import os
 import sys
+import glob
 import time
+import pickle
 
 def ol_get(list, filter):
     for x in list:
@@ -45,7 +47,7 @@ class data_methods:
                 datum['pub_year'] = paper['year']
             except KeyError:
                 datum['pub_year'] = "None"
-            datum['keywords'] = paper['keywords']
+            datum['keywords'] = [ keyword.lower() for keyword in paper['keywords'] ]
             
             data.append(datum)
         return data
@@ -87,6 +89,12 @@ class output_methods:
         
         f.close()
         return filename
+        
+    def pickle(self, data, name):
+        filename = str(name) + str(time.time()) + ".data_pkl"
+        pickle.dump(data, open(filename, "wb"))
+        return filename
+    
 
 def interface():
     mendeley = create_client()
@@ -119,7 +127,12 @@ def interface():
                             'id': 1,
                             'title': 'Tab-separated values (TSV)',
                             'method': 'tsv'
-                        } ]
+                        },
+                        {
+                            'id': 2,
+                            'title': 'Pickle',
+                            'method': 'pickle'
+                        }]
 
     selected_format = get_selection(output_formats, "Please select an output format: ")
 
@@ -135,7 +148,7 @@ def interface():
 
     print selected_data['title'] + " data saved as " + selected_format['title'] + " in file: " + out_file
     #selected_format['method']()
-
+    
 
 if __name__ == '__main__':
     interface()
